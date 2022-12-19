@@ -42,36 +42,31 @@ void PrintArray(double[] array)
     Console.WriteLine();
 }
 
-double GetMaxNumber(double[] array)
+
+(double, double) GetMaxMinNumber(double[] array)
 {
     double maxNumber = array[0];
+    double minNumber = array[0];
     for (int i = 1; i < array.Length; i++)
     {
         if (array[i] > maxNumber)
         {
             maxNumber = array[i];
         }
-    }
-    return maxNumber;
-}
-
-double GetMinNumber(double[] array)
-{
-    double minNumber = array[0];
-    for (int i = 1; i < array.Length; i++)
-    {
-        if (array[i] < minNumber)
+        else
         {
-            minNumber = array[i];
+            if (array[i] < minNumber)
+            {
+                minNumber = array[i];
+            }
         }
     }
-    return minNumber;
+    return (maxNumber, minNumber);
 }
 
 int sizeArray = GetNumber("Введите размерность массива");
-double[] array = InitArray(sizeArray);
-PrintArray(array);
-double max = GetMaxNumber(array);
-double min = GetMinNumber(array);
-Console.WriteLine($"Разница между максимальным и минимальным элементами массива: {max - min}");
+double[] arr = InitArray(sizeArray);
+PrintArray(arr);
+(double max, double min) = GetMaxMinNumber(arr);
+Console.WriteLine($"Разница между максимальным ({max}) и минимальным ({min}) элементами массива: {max - min}");
 
